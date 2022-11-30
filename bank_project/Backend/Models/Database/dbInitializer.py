@@ -22,18 +22,14 @@ MOCK_DATA = [
 
 def init_script():
     # drop existing DB - optional
-    # try:
-    #     initial_connection = pymysql.connect(
-    #         host="localhost",
-    #         user="root",
-    #         password=""
-    #     )
-    #     print("deleting data base...")
-    #     initial_connection.cursor().execute(f'drop database {DB_NAME}')
-    #     print("data base deleted successfully")
+    try:
+        initial_connection = pymysql.connect(host="localhost", user="root", password="")
+        print("deleting data base...")
+        initial_connection.cursor().execute(f"drop database {DB_NAME}")
+        print("data base deleted successfully")
 
-    # except Exception:
-    #     print("data base dont exists!")
+    except Exception:
+        print("data base dont exists!")
 
     # create DB
     try:
@@ -73,6 +69,7 @@ def init_script():
                     TransactionVendor VARCHAR(255),
                     TransactionCategory VARCHAR(255),
                     TransactionUserID INT,
+                    TransactionDate DATETIME,
                     PRIMARY KEY (TransactionID),
                     FOREIGN KEY (TransactionUserID) REFERENCES Users(UserID))
                     """
