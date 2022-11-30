@@ -1,50 +1,63 @@
 import pymysql
 
 DB_NAME = "bank_app"
-MOCK_DATA = [(-180, "bus", "transportation",),(-200, "fuel", "transportation",),(300, "cash", "salary",)]
+MOCK_DATA = [
+    (
+        -180,
+        "bus",
+        "transportation",
+    ),
+    (
+        -200,
+        "fuel",
+        "transportation",
+    ),
+    (
+        300,
+        "cash",
+        "salary",
+    ),
+]
+
 
 def init_script():
     # drop existing DB - optional
-    try:
-        initial_connection = pymysql.connect(
-            host="localhost",
-            user="root",
-            password=""
-        )
-        print("deleting data base...")
-        initial_connection.cursor().execute(f'drop database {DB_NAME}')
-        print("data base deleted successfully")
+    # try:
+    #     initial_connection = pymysql.connect(
+    #         host="localhost",
+    #         user="root",
+    #         password=""
+    #     )
+    #     print("deleting data base...")
+    #     initial_connection.cursor().execute(f'drop database {DB_NAME}')
+    #     print("data base deleted successfully")
 
-    except Exception: 
-        print("data base dont exists!")
+    # except Exception:
+    #     print("data base dont exists!")
 
     # create DB
     try:
-        initial_connection = pymysql.connect(
-            host="localhost",
-            user="root",
-            password=""
-        )
+        initial_connection = pymysql.connect(host="localhost", user="root", password="")
         print("creating data base...")
-        initial_connection.cursor().execute(f'create database {DB_NAME}')
+        initial_connection.cursor().execute(f"create database {DB_NAME}")
         print("data base created successfully")
 
-    except Exception: 
+    except Exception:
         print("data base already exists!")
 
     # create tables
     try:
         initial_connection = pymysql.connect(
-        host="localhost",
-        user="root",
-        password="",
-        db=DB_NAME,
-        charset="utf8",
-        cursorclass=pymysql.cursors.DictCursor
-    )
+            host="localhost",
+            user="root",
+            password="",
+            db=DB_NAME,
+            charset="utf8",
+            cursorclass=pymysql.cursors.DictCursor,
+        )
         print("creating value table...")
 
-                #          /// DO YOUR TABLE INITIALIZATION HERE ////         #
+        #          /// DO YOUR TABLE INITIALIZATION HERE ////         #
 
         query = """CREATE TABLE IF NOT EXISTS Users(
                     UserID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -73,10 +86,10 @@ def init_script():
         # initial_connection.commit()
 
         print("table created successfully")
-    except Exception: 
+    except Exception:
         print("tables already exists!")
 
-    #add ingridients:
+    # add ingridients:
     try:
         initial_connection = pymysql.connect(
             host="localhost",
@@ -84,7 +97,7 @@ def init_script():
             password="",
             db=DB_NAME,
             charset="utf8",
-            cursorclass=pymysql.cursors.DictCursor
+            cursorclass=pymysql.cursors.DictCursor,
         )
         with initial_connection.cursor() as cursor:
             print("inserting values...")
@@ -96,7 +109,9 @@ def init_script():
             # cursor.executemany(query,params)
             # initial_connection.commit()
 
-    except Exception: 
+    except Exception:
         print(Exception.args[0])
         print("coudlnt insert values!")
 
+
+init_script()
