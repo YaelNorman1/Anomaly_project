@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException,Depends, Request
 from Models.Transactions import Transactions
 from auth.JWT_bearer import jwtBearer
 from Schemas.Transaction import Transaction
+import datetime
 
 router = APIRouter(dependencies=[Depends(jwtBearer())])
 model_transactions = Transactions()
@@ -41,6 +42,7 @@ async def get_transactions(requset: Request):
 @router.post('/transactions', status_code=201)
 async def post_transaction(transaction: Transaction):
     try:
+        transaction.set_date(datetime.datetime.now())
         model_transactions.add(transaction)
         return {"result": list(transaction)}
     except:

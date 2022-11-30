@@ -12,7 +12,7 @@ class Transactions:
     def add(self, transaction):
         user_name = transaction.user
         user_ID = udb.get_user(user_name)["UserID"]
-        transaction_details = [transaction.amount, transaction.vendor, transaction.category, user_ID]
+        transaction_details = [transaction.amount, transaction.vendor, transaction.category, transaction.date, user_ID]
         result = tdb.add_transaction(transaction_details)
         return result
 
