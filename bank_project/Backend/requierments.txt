@@ -1,0 +1,5 @@
+fastapi==0.70
+uvicorn==0.15.0
+
+PyJWT==1.1
+python-decouple==3.3

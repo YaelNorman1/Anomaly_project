@@ -1,0 +1,14 @@
+
+
+#main-links{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+}
+
+#main-links > a{
+    margin: 10px;
+    padding: 1vw;
+    color: #207648;
+    text-shadow: 1px 0 #b7f1ff;
+}

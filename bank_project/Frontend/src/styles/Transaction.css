@@ -1,0 +1,32 @@
+.transaction-container{
+    background-color: rgb(225, 250, 245);
+    -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 0 15px rgba(0,0,0,0.1);
+     box-shadow: 0 0 15px rgba(0,0,0,0.1);
+     border-radius: 5px;
+     padding: 10px;
+     display: grid;
+     grid-template-columns: auto;
+     grid-template-rows: auto;
+     grid-template-areas: 
+     "item cost"
+     "category button";
+     /* justify-content: space-around; */
+     align-items: center;
+     width: 50vw;
+     height: 15vh;
+     text-align: center;
+}
+
+.transaction-container > * {
+    -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 0 15px rgba(0,0,0,0.1);
+     box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.cost-negetive{
+    background-color: rgb(252, 93, 93);
+}
+.cost-positive{
+    background-color: rgb(85, 187, 85);
+}
