@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import datetime
 
 
@@ -7,7 +7,7 @@ class Transaction(BaseModel):
     vendor: str
     category: str
     user: str
-    date: datetime.datetime
+    date: datetime.datetime = Field(default=None)
 
     def set_date(self, date: datetime.datetime):
         self.date = date
