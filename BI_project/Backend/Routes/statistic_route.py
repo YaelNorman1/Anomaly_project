@@ -7,8 +7,8 @@ route = APIRouter()
 db_menager= MySqlManager()
 
 
-@route.get("/statistic/{user_id}/{category}", status_code=status.HTTP_200_OK)
-def get_user_statistic(user_id, category) -> dict :
+@route.get("/statistics/{user_id}/{category}", status_code=status.HTTP_200_OK)
+def get_user_statistics(user_id, category) -> dict :
     num=5
     try:
         # return "hello"
