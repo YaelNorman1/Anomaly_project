@@ -1,12 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-from Routes import anomalies_route, statistic_route
+from Routes import anomalies_route, statistic_route, category_route
 
 
 app = FastAPI()
 app.include_router(anomalies_route.route)
 app.include_router(statistic_route.route)
+app.include_router(category_route.route)
+
 
 
 origins = [
