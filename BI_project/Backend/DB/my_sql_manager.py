@@ -1,8 +1,8 @@
 from DB.db_manager import DataBaseManager
 import pymysql
 from typing import List
-from queries.anomaly_queries import *
-from queries.statistics_queries import *
+from DB.queries.anomaly_queries import *
+from DB.queries.statistics_queries import *
 
 
 class MySqlManager(DataBaseManager):
@@ -32,4 +32,5 @@ class MySqlManager(DataBaseManager):
     def get_user_statistics(self, user_id: int, category: str) -> dict:
         query = get_quantity_query(user_id, category)
         statistics = self._execute_query(query)
-        return statistics[0]
+        print (statistics)
+        return dict(statistics[0])
