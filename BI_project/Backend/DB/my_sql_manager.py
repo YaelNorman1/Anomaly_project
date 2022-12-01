@@ -32,5 +32,4 @@ class MySqlManager(DataBaseManager):
     def get_user_statistics(self, user_id: int, category: str) -> dict:
         query = get_quantity_query(user_id, category)
         statistics = self._execute_query(query)
-        print (statistics)
         return dict(statistics[0])
