@@ -40,3 +40,6 @@ class MySqlManager(DataBaseManager):
         query= get_all_categories_query
         categories = self._execute_query(query)
         return categories
+
+    def add_anomaly(self) ->None:
+        pass

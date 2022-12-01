@@ -1,5 +1,5 @@
 from Models.Database import dbController
-
+from datetime import datetime,timedelta
 connection = dbController.get_connection()
 TBL_NAME = "transactions"
 
@@ -59,5 +59,20 @@ def delete_transaction(id):
             cursor.execute(query)
             connection.commit()
             return cursor.fetchall()
+    except TypeError as e:
+        print(e)
+
+def get_recent_transactions(time_cycle):
+    now = datetime.now()
+    prev_time_slot=now-timedelta(hours=0,minutes=0,seconds=time_cycle)
+    try:
+        with connection.cursor() as cursor:
+            get_table = (
+                f"SELECT * FROM {TBL_NAME} WHERE TransactionDate>={prev_time_slot}"
+            )
+            cursor.execute(get_table)
+            result = cursor.fetchall()
+            print(result)
+            return result
     except TypeError as e:
         print(e)

@@ -36,4 +36,7 @@ class Transactions:
         return result
 
     
-    
+        
+    def get_recent_transactions(time_cycle):
+            results = tdb.get_recent_transactions(time_cycle)
+            return results
