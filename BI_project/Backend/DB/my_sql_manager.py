@@ -1,5 +1,8 @@
 from DB.db_manager import DataBaseManager
 import pymysql
+from typing import List
+from queries.anomaly_queries import *
+from queries.statistics_queries import *
 
 
 class MySqlManager(DataBaseManager):
@@ -20,3 +23,13 @@ class MySqlManager(DataBaseManager):
             cursor.execute(query)
             result = cursor.fetchall()
             return result
+
+    def get_all_anomalies(self) -> List:
+        query = get_all_anomalies_query
+        anomalies = self._execute_query(query)
+        return anomalies
+
+    def get_user_statistics(self, user_id: int, category: str) -> dict:
+        query = get_quantity_query(user_id, category)
+        statistics = self._execute_query(query)
+        return statistics[0]
