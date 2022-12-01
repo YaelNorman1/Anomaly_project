@@ -6,7 +6,7 @@ create_anomalies_table = f"""
                 userId INT,
                 category VARCHAR(255),
                 quantity INT,
-                startDate DATE,
+                startDate DATETIME,
                 endDate DATETIME,
                 FOREIGN KEY(userId) REFERENCES {USER_STATISTIC_TABLE_NAME}(userId)
                 );
