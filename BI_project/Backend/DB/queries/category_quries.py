@@ -1,4 +1,4 @@
 get_all_categories_query = f"""
-    SELECT category
+    SELECT DISTINCT category
     FROM anomalies
 """
