@@ -27,16 +27,8 @@ class Transactions:
             return int(result['balance'])
         except:
             return 0
-
-
     
     def get_breakdown(self, user_name):
         user_ID = udb.get_user(user_name)["UserID"]
         result = tdb.get_breakdown(user_ID)
         return result
-
-    
-        
-    def get_recent_transactions(time_cycle):
-            results = tdb.get_recent_transactions(time_cycle)
-            return results

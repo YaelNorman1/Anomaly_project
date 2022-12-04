@@ -1,5 +1,7 @@
 from datetime import datetime,timedelta
 import pymysql
+import requests
+from constants import *
 
 connection = pymysql.connect(
         host="localhost",
@@ -7,7 +9,7 @@ connection = pymysql.connect(
         password="",
         db="bank_app",
         charset="utf8",
-        cursorclass=pymysql.cursors.DictCursor,
+        cursorclass=pymysql.cursors.DictCursor
 )
 
 def get_recent_transactions(time_cycle):
@@ -15,10 +17,13 @@ def get_recent_transactions(time_cycle):
     prev_time_slot=now-timedelta(hours=0,minutes=0,seconds=time_cycle)
     try:
         with connection.cursor() as cursor:
-            get_table = (
-                f"SELECT * FROM transactions WHERE TransactionDate>={prev_time_slot}"
-            )
-            cursor.execute(get_table)
+            get_table = f"""
+            SELECT * 
+            FROM transactions 
+            WHERE TransactionDate >= %s
+            """
+            cursor.execute(get_table, (prev_time_slot,))
+            connection.commit()
             result = cursor.fetchall()
             print(result)
             return result
