@@ -5,21 +5,18 @@ import axios, * as others from 'axios';
 
 
 function Filter() {
-    const [state, setState] = useState({
+    const [filter, setFilter] = useState({
         userName: "",
-        category: [],
+        category: "",
         fromDate: "",
         toDate: ""
       })
+    const [categories, setCategories]  = useState([])
 
       useEffect(() => {
         axios.get('http://localhost:8000/categories')
         .then(function (response) {
-          console.log(response.data)
-          setState({
-            ...state,
-            ['category']: response.data
-          });
+          setCategories(response.data);
         })
         .catch(function (error) {
           console.log(error);
@@ -28,24 +25,23 @@ function Filter() {
 
     function handleChange(evt) {
         const value = evt.target.value;
-        setState({
-          ...state,
+        setFilter({
+          ...filter,
           [evt.target.name]: value
         });
-        console.log(state)
     }
 
     function categoriesOptions(){
-      return state.category.map(category=>{
-         return (<option value="{category}">{category}</option>)
+      return categories.map(category=>{
+         return (<option value={category} key={category}>{category}</option>)
         })
     }
 
     function printData(){
-      console.log("user name: " + state.userName)
-      console.log("category: " + state.category)
-      console.log("from date: " + state.fromDate)
-      console.log("to date:" + state.toDate)
+      console.log("user name: " + filter.userName)
+      console.log("category: " + filter.category)
+      console.log("from date: " + filter.fromDate)
+      console.log("to date:" + filter.toDate)
     }
 
     return (
@@ -55,7 +51,7 @@ function Filter() {
             </Col>
 
             <Col>
-              <Form.Select aria-label="Floating label select example" name="category" onChange={handleChange} value={state.category}>
+              <Form.Select aria-label="Floating label select example" name="category" onChange={handleChange} value={filter.category}>
                 <option>Open this select menu</option>
                 {categoriesOptions()}
               </Form.Select>
@@ -68,7 +64,7 @@ function Filter() {
                   type="date"
                   name="fromDate"
                   id="startdate"
-                  value={state.fromDate}
+                  value={filter.fromDate}
                   onChange={handleChange}
                   className="form-control datepicker"
                   style={{ width: "150px" }}
@@ -82,9 +78,9 @@ function Filter() {
                 <input
                   type="date"
                   name="toDate"
-                  min={state.fromDate}
+                  min={filter.fromDate}
                   id="enddate"
-                  value={state.toDate}
+                  value={filter.toDate}
                   placeholder="Select Date"
                   onChange={handleChange}
                   className="form-control datepicker"
