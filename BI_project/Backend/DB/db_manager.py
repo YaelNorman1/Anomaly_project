@@ -10,3 +10,7 @@ class DataBaseManager(ABC):
     @abstractmethod
     def get_user_statistics(self, user_id: int, category: str) -> List:
         pass
+
+    @abstractmethod
+    def get_categories(self) -> List:
+        pass

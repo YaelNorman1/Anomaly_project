@@ -3,6 +3,8 @@ import pymysql
 from typing import List
 from DB.queries.anomaly_queries import *
 from DB.queries.statistics_queries import *
+from DB.queries.category_quries import *
+
 
 
 class MySqlManager(DataBaseManager):
@@ -33,3 +35,8 @@ class MySqlManager(DataBaseManager):
         query = get_quantity_query(user_id, category)
         statistics = self._execute_query(query)
         return dict(statistics[0])
+    
+    def get_categories(self) -> list:
+        query= get_all_categories_query
+        categories = self._execute_query(query)
+        return categories
