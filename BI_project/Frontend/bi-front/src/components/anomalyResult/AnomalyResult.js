@@ -22,7 +22,7 @@ function AnomalyResult(props) {
 
   return (
     <Container className="AnomalyResult">
-      {groupAnomaliesById().map(user => (<User user= {user}/>))}
+      {groupAnomaliesById().map(user => (<User key={user.userId} user= {user}/>))}
     </Container>
   );
 }

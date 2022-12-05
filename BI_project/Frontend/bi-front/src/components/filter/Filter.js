@@ -83,7 +83,7 @@ function Filter(props) {
             </Col>
 
             <Col>
-                <Button type="submit" onClick={()=>{props.filetr(filter)}}>Button</Button>
+                <Button type="submit" onClick={()=>{props.filter(filter)}}>Button</Button>
             </Col>
         </Row>
     );

@@ -9,7 +9,7 @@ export default function User (props) {
       <Card.Header>{props.user.userName} {props.user.userId}</Card.Header>
       <ListGroup variant="flush">
         {props.user.anomalies.map(anomaly => {
-            return <Anomaly anomaly= {anomaly}/>
+            return <Anomaly key={anomaly.anomalyId} anomaly= {anomaly}/>
         })} 
       </ListGroup>
     </Card>
