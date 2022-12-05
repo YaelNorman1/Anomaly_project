@@ -43,12 +43,13 @@ def add_anomaly(user_id,category,quantity,start_date,end_date):
         except TypeError as e:
                 print(e)
 
-def update_user_statistics(user_id, avg_num_withdraws, avg_num_deposits, avg_amount_withdraws, avg_amount_deposit):
+def update_user_statistics(user_id, user_name, avg_num_withdraws, avg_num_deposits, avg_amount_withdraws, avg_amount_deposit):
         try:
                 with connection.cursor() as cursor:
                         update_user_statistic_query = f"""
                         UPDATE user_statistics
                         SET userId={user_id}, 
+                        userName='{user_name}',
                         avgNumOfWithdraws={avg_num_withdraws},
                         avgNumOfDeposits={avg_num_deposits},
                         avgAmountWithdraw={avg_amount_withdraws},
@@ -61,12 +62,12 @@ def update_user_statistics(user_id, avg_num_withdraws, avg_num_deposits, avg_amo
         except TypeError as e:
                 print(e)
 
-def insert_user_statistics(user_id, avg_num_withdraws, avg_num_deposits, avg_amount_withdraws, avg_amount_deposit):
+def insert_user_statistics(user_id,user_name, avg_num_withdraws, avg_num_deposits, avg_amount_withdraws, avg_amount_deposit):
         try:
                 with connection.cursor() as cursor:
                         add_user_statistic_query = f"""
                         INSERT INTO user_statistics
-                        VALUES ({user_id},{avg_num_withdraws},{avg_num_deposits},{avg_amount_withdraws},{avg_amount_deposit},1)
+                        VALUES ({user_id},'{user_name}',{avg_num_withdraws},{avg_num_deposits},{avg_amount_withdraws},{avg_amount_deposit},1)
                         """
                         cursor.execute(add_user_statistic_query)
                         connection.commit()

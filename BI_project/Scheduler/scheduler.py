@@ -13,7 +13,6 @@ def check_amount_anomaly(user_id,quantity, category):
     expected_value = stats[0][category]
     is_it_anomaly = quantity> ((1 + AMOUNT_DEVIATION_PERCENTAGE) * expected_value)
     return is_it_anomaly
-        
 
 def check_transactions_num_anomaly():
     pass
@@ -24,6 +23,7 @@ def calc_amount_avg(prev, amount, num_of_updates):
 def update_bi_database():
     recent_transactions = transactions_table_manager.get_recent_transactions(USER_STATISTICS_SCHEDULER_TIME_PERIOD)
     for transaction in recent_transactions:
+        user_name = transaction["UserName"]
         user_id = transaction["TransactionUserID"]
         quantity = transaction["TransactionAmount"]
         category = BI_EVENT_AVG_AMOUNT_DEPOSITS if quantity>0 else BI_EVENT_AVG_AMOUNT_WITHDRAWS
@@ -35,14 +35,14 @@ def update_bi_database():
             if not stats:
                 avg_amount_withdraws = quantity if quantity<0 else 0
                 avg_amount_deposits = quantity if quantity>0 else 0
-                bi_tables_manager.insert_user_statistics(user_id,avg_num_withdraws,avg_num_deposits,avg_amount_withdraws,avg_amount_deposits)
+                bi_tables_manager.insert_user_statistics(user_id,user_name,avg_num_withdraws,avg_num_deposits,avg_amount_withdraws,avg_amount_deposits)
             else:
                 num_of_updates = stats[0]["numOfUpdates"]
                 prev_avg_amount_withdraw = stats[0]["avgAmountWithdraw"]
                 prev_avg_amount_deposite = stats[0]["avgAmountDeposit"]
                 avg_amount_withdraws = calc_amount_avg(prev_avg_amount_withdraw, quantity, num_of_updates) if quantity<0 else avg_amount_withdraws
                 avg_amount_deposits = calc_amount_avg(prev_avg_amount_deposite, quantity, num_of_updates) if quantity>0 else avg_amount_deposits
-                bi_tables_manager.update_user_statistics(user_id,avg_num_withdraws,avg_num_deposits,avg_amount_withdraws,avg_amount_deposits)
+                bi_tables_manager.update_user_statistics(user_id,user_name,avg_num_withdraws,avg_num_deposits,avg_amount_withdraws,avg_amount_deposits)
         else:
             now = datetime.now()
             prev = now-timedelta(hours=0,minutes=0,seconds=ANOMALIES_SCHEDULER_TIME_PERIOD)

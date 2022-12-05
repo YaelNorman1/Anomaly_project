@@ -19,7 +19,8 @@ def get_recent_transactions(time_cycle):
         with connection.cursor() as cursor:
             get_table = f"""
             SELECT * 
-            FROM transactions 
+            FROM transactions AS t JOIN users AS u
+            ON t.TransactionUserID = u.UserID
             WHERE TransactionDate >= %s
             """
             cursor.execute(get_table, (prev_time_slot,))
