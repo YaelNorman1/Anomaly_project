@@ -10,13 +10,12 @@ app.include_router(statistic_route.route)
 app.include_router(category_route.route)
 
 
-
 origins = [
     "http://localhost.tiangolo.com",
     "https://localhost.tiangolo.com",
     "http://localhost",
-    "http://localhost:8000",
-    "http://localhost:3000"
+    "http://localhost:8020",
+    "http://localhost:3001"
 ]
 
 app.add_middleware(
@@ -27,9 +26,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 def root():
     return "Server On"
+
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="0.0.0.0", port=8020, reload=True)

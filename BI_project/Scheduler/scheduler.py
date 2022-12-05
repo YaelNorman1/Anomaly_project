@@ -40,8 +40,8 @@ def update_bi_database():
                 num_of_updates = stats[0]["numOfUpdates"]
                 prev_avg_amount_withdraw = stats[0]["avgAmountWithdraw"]
                 prev_avg_amount_deposite = stats[0]["avgAmountDeposit"]
-                avg_amount_withdraws = calc_amount_avg(prev_avg_amount_withdraw, quantity, num_of_updates) if quantity<0 else avg_amount_withdraws
-                avg_amount_deposits = calc_amount_avg(prev_avg_amount_deposite, quantity, num_of_updates) if quantity>0 else avg_amount_deposits
+                avg_amount_withdraws = calc_amount_avg(prev_avg_amount_withdraw, quantity, num_of_updates) if quantity<0 else prev_avg_amount_withdraw
+                avg_amount_deposits = calc_amount_avg(prev_avg_amount_deposite, quantity, num_of_updates) if quantity>0 else prev_avg_amount_deposite
                 bi_tables_manager.update_user_statistics(user_id,user_name,avg_num_withdraws,avg_num_deposits,avg_amount_withdraws,avg_amount_deposits)
         else:
             now = datetime.now()
