@@ -3,10 +3,7 @@ import { Button } from "react-bootstrap";
 import MoreAnomalyData from "../moreAnomalyData/MoreAnomalyData";
 
 export default function Anomaly (props){
-    function popUpDetails(){
-        console.log("fo")
-    }
-    
+
     return (
         <ListGroup.Item>
             <div>category: {props.anomaly.category}</div>
