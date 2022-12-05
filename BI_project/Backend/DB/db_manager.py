@@ -14,3 +14,7 @@ class DataBaseManager(ABC):
     @abstractmethod
     def get_categories(self) -> List:
         pass
+
+    @abstractmethod
+    def add_anomaly(self) -> None:
+        pass

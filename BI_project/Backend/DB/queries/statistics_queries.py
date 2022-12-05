@@ -1,6 +1,8 @@
-def get_quantity_query(user_id: int, category: str):
+from DB.constants import *
+
+def get_user_statistics_query(user_id: int):
     return f"""
-        SELECT {category}
-        FROM user_statistics
+        SELECT *
+        FROM {USER_STATISTIC_TABLE_NAME}
         WHERE userId = {user_id} 
     """

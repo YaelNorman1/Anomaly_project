@@ -15,6 +15,7 @@ create_anomalies_table = f"""
 create_user_statistics_table = f"""
             CREATE TABLE IF NOT EXISTS {USER_STATISTIC_TABLE_NAME}(
                 userId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                userName VARCHAR(255),
                 avgNumOfWithdraws FLOAT,
                 avgNumOfDeposits FLOAT,
                 avgAmountWithdraw FLOAT,
