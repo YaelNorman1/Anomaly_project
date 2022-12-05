@@ -1,10 +1,10 @@
 import { Button } from "react-bootstrap/lib/InputGroup";
 
 export default function Anomaly (props){
-    popUpDetails(){
+    // popUpDetails(){
 
-    }
-    
+    // }
+
     return (
         <ListGroup.Item>
             {props.anomaly}
