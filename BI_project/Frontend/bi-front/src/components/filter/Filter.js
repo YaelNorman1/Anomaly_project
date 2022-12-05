@@ -1,41 +1,53 @@
 import React, { useState, useEffect } from "react";
-import { InputGroup , Form , DropdownButton , Dropdown , Row, Col , Button} from 'react-bootstrap';
+import { Form , Row, Col , Button} from 'react-bootstrap';
+import axios, * as others from 'axios';
 
 
 
-function Filter() {
-    const [state, setState] = useState({
+function Filter(props) {
+    const [filter, setFilter] = useState({
+        userId: "",
+        category: "",
         fromDate: "",
         toDate: ""
       })
+    const [categories, setCategories]  = useState([])
 
+    useEffect(() => {
+      axios.get('http://localhost:8000/categories')
+      .then(function (response) {
+        setCategories(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    }, []);
 
     function handleChange(evt) {
         const value = evt.target.value;
-        setState({
-          ...state,
+        setFilter({
+          ...filter,
           [evt.target.name]: value
         });
+    }
+
+    function categoriesOptions(){
+      return categories.map(category=>{
+         return (<option value={category} key={category}>{category}</option>)
+        })
     }
 
     return (
         <Row>
             <Col>
-                <InputGroup className="mb-3">
-                  <Form.Control
-                    placeholder="Username"
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                  />
-                </InputGroup>
+              <Form.Control type="number" placeholder="Enter user id" name="userId" onChange={handleChange}/>
             </Col>
 
             <Col>
-                <DropdownButton id="dropdown-basic-button" title="Category">
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                </DropdownButton>
+              <Form.Select aria-label="Floating label select example" name="category" onChange={handleChange} value={filter.category}>
+                <option>Open this select menu</option>
+                {categoriesOptions()}
+              </Form.Select>
             </Col>
 
             <Col>
@@ -45,7 +57,7 @@ function Filter() {
                   type="date"
                   name="fromDate"
                   id="startdate"
-                  value={state.fromDate}
+                  value={filter.fromDate}
                   onChange={handleChange}
                   className="form-control datepicker"
                   style={{ width: "150px" }}
@@ -59,9 +71,9 @@ function Filter() {
                 <input
                   type="date"
                   name="toDate"
-                  min={state.fromDate}
+                  min={filter.fromDate}
                   id="enddate"
-                  value={state.toDate}
+                  value={filter.toDate}
                   placeholder="Select Date"
                   onChange={handleChange}
                   className="form-control datepicker"
@@ -71,7 +83,7 @@ function Filter() {
             </Col>
 
             <Col>
-                <Button type="submit">Button</Button>
+                <Button type="submit" onClick={()=>{props.filetr(filter)}}>Button</Button>
             </Col>
         </Row>
     );
