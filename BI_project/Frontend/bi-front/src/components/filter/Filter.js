@@ -4,24 +4,24 @@ import axios, * as others from 'axios';
 
 
 
-function Filter() {
+function Filter(props) {
     const [filter, setFilter] = useState({
-        userName: "",
+        userId: "",
         category: "",
         fromDate: "",
         toDate: ""
       })
     const [categories, setCategories]  = useState([])
 
-      useEffect(() => {
-        axios.get('http://localhost:8000/categories')
-        .then(function (response) {
-          setCategories(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        })
-      }, []);
+    useEffect(() => {
+      axios.get('http://localhost:8000/categories')
+      .then(function (response) {
+        setCategories(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    }, []);
 
     function handleChange(evt) {
         const value = evt.target.value;
@@ -37,17 +37,10 @@ function Filter() {
         })
     }
 
-    function printData(){
-      console.log("user name: " + filter.userName)
-      console.log("category: " + filter.category)
-      console.log("from date: " + filter.fromDate)
-      console.log("to date:" + filter.toDate)
-    }
-
     return (
         <Row>
             <Col>
-              <Form.Control type="email" placeholder="Enter user name" name="userName" onChange={handleChange}/>
+              <Form.Control type="number" placeholder="Enter user id" name="userId" onChange={handleChange}/>
             </Col>
 
             <Col>
@@ -90,7 +83,7 @@ function Filter() {
             </Col>
 
             <Col>
-                <Button type="submit" onClick={printData}>Button</Button>
+                <Button type="submit" onClick={()=>{props.filetr(filter)}}>Button</Button>
             </Col>
         </Row>
     );
