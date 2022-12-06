@@ -7,6 +7,7 @@ import { Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import AnomalyResult from './components/anomalyResult/AnomalyResult';
 import axios, * as others from 'axios';
+import {ANOMALIES_URL} from '../src/utils/consts'
 
 function App() {
   const [filteredAnomalies, setFilteredAnomalies] = useState([])
@@ -29,7 +30,7 @@ function App() {
 
   function fetchFilterAnomalies(filter){
     axios
-    .get(`http://localhost:8000/anomalies`, {
+    .get(ANOMALIES_URL, {
         params: { userId: filter.userId, category: filter.category, fromDate: filter.fromDate, toDate: filter.toDate},
     })
     .then(function (response) {

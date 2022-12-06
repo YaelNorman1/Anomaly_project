@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form , Row, Col , Button} from 'react-bootstrap';
 import axios, * as others from 'axios';
-
+import {CATEGORIES_URL} from '../../utils/consts';
 
 
 function Filter(props) {
@@ -14,7 +14,7 @@ function Filter(props) {
     const [categories, setCategories]  = useState([])
 
     useEffect(() => {
-      axios.get('http://localhost:8000/categories')
+      axios.get(CATEGORIES_URL)
       .then(function (response) {
         setCategories(response.data);
       })
