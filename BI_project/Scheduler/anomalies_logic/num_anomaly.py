@@ -6,4 +6,3 @@ def check_transactions_num_anomaly(transactions):
         map(lambda transaction: transaction["TransactionUserID"], transactions)
     )
     users_counter = Counter(users)
-    print(users_counter)
