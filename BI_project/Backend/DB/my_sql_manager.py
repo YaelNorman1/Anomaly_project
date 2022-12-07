@@ -6,7 +6,6 @@ from DB.queries.statistics_queries import *
 from DB.queries.category_quries import *
 
 
-
 class MySqlManager(DataBaseManager):
     def __init__(self) -> None:
         self.connection = pymysql.connect(
@@ -35,20 +34,12 @@ class MySqlManager(DataBaseManager):
         query = get_user_statistics_query(user_id)
         statistics = self._execute_query(query)
         return statistics
-    
+
     def get_categories(self) -> list:
-        query= get_all_categories_query
+        query = get_all_categories_query
         categories = self._execute_query(query)
         return categories
 
-    def add_anomaly(self,user_id,category,quantity,start_date,end_date) ->None:
-        query = add_anomaly_query(user_id,category,quantity,start_date,end_date)
-        self._execute_query(query)
-
-    def update_user_statistics(self, user_id, avg_num_withdraws, avg_num_deposits, avg_amount_withdraws, avg_amount_deposit):
-        query = update_user_statistics_query(user_id, avg_num_withdraws, avg_num_deposits, avg_amount_withdraws, avg_amount_deposit)
-        self._execute_query(query)
-
-    def insert_user_statistics(self, user_id, avg_num_withdraws, avg_num_deposits, avg_amount_withdraws, avg_amount_deposit):
-        query=insert_user_statistics_query(user_id, avg_num_withdraws, avg_num_deposits, avg_amount_withdraws, avg_amount_deposit)
+    def add_anomaly(self, user_id, category, quantity, start_date, end_date) -> None:
+        query = add_anomaly_query(user_id, category, quantity, start_date, end_date)
         self._execute_query(query)
