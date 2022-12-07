@@ -3,16 +3,16 @@ from datetime import datetime
 
 def filtered_anomalies(anomalies, userId:int, category,fromDate, toDate) -> list:
     filtered_anomalies_list = anomalies
-    if userId != '':
+    if userId != '' and userId != None:
         filtered_anomalies_list= generic_filtering("userId", userId, anomalies)
     
     if category in get_all_categories() :
         filtered_anomalies_list= generic_filtering("category", category, filtered_anomalies_list)
     
-    if fromDate != '':
+    if fromDate != '' and userId != None:
         filtered_anomalies_list= fromDate_filtering("fromDate", fromDate, filtered_anomalies_list)
     
-    if toDate != '':
+    if toDate != '' and userId != None:
         filtered_anomalies_list= toDate_filtering("toDate", toDate, filtered_anomalies_list)
 
     return filtered_anomalies_list
