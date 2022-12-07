@@ -73,4 +73,4 @@ def check_amount_anomaly(transaction):
         prev = now - timedelta(
             hours=0, minutes=0, seconds=ANOMALIES_SCHEDULER_TIME_PERIOD
         )
-        bi_tables_manager.add_amount_anomaly(user_id, category, quantity, prev, now)
+        bi_tables_manager.add_anomaly(user_id, category, quantity, prev, now)

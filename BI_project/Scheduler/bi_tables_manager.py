@@ -30,7 +30,7 @@ def get_user_statistics(user_id):
         print(e)
 
 
-def add_amount_anomaly(user_id, category, quantity, start_date, end_date):
+def add_anomaly(user_id, category, quantity, start_date, end_date):
     try:
         with connection.cursor() as cursor:
             add_anomaly_query = f"""
