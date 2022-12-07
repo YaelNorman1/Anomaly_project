@@ -13,12 +13,17 @@ def update_bi_database():
     for transaction in recent_transactions:
         check_amount_anomaly(transaction)
     check_transactions_num_anomaly(recent_transactions)
+    print("finished update of bi DB")
+    global remaining_time
+    remaining_time = USER_STATISTICS_SCHEDULER_TIME_PERIOD
 
 
 schedule.every(USER_STATISTICS_SCHEDULER_TIME_PERIOD).seconds.do(update_bi_database)
 
-
+print("Scheduler start Running")
+remaining_time = USER_STATISTICS_SCHEDULER_TIME_PERIOD
 while True:
     schedule.run_pending()
     time.sleep(1)
-    print("scheduler is running")
+    remaining_time -= 1
+    print(remaining_time)
