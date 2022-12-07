@@ -20,7 +20,8 @@ create_user_statistics_table = f"""
                 avgNumOfDeposits FLOAT,
                 avgAmountWithdraw FLOAT,
                 avgAmountDeposit FLOAT,
-                numOfUpdates INT
+                numOfWithdraws INT,
+                numOfDeposits INT,
+                numOfIntervals INT
                 );
             """
-
