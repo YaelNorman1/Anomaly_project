@@ -1,5 +1,5 @@
-import Scheduler.bi_tables_manager as bi_tables_manager
-from Scheduler.constants import *
+import bi_tables_manager as bi_tables_manager
+from constants import *
 from datetime import datetime, timedelta
 
 

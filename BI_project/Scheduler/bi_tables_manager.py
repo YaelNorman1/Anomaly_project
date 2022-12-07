@@ -24,7 +24,6 @@ def get_user_statistics(user_id):
             cursor.execute(get_user_statistics)
             connection.commit()
             result = cursor.fetchall()
-            print(result)
             return result
     except TypeError as e:
         print(e)
