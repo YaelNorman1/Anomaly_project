@@ -88,3 +88,33 @@ def insert_user_statistics(userStatistics: UserStatistics):
             connection.commit()
     except TypeError as e:
         print(e)
+
+
+def update_num_of_intervals(user_id):
+    try:
+        with connection.cursor() as cursor:
+            update_num_of_intervals_query = f"""
+                        UPDATE user_statistics
+                        SET 
+                            numOfIntervals=numOfIntervals+1
+                        WHERE userId={user_id}
+                        """
+            cursor.execute(update_num_of_intervals_query)
+            connection.commit()
+    except TypeError as e:
+        print(e)
+
+
+def update_avg_num(user_id, type, new_avg):
+    try:
+        with connection.cursor() as cursor:
+            update_avg_num_query = f"""
+                        UPDATE user_statistics
+                        SET 
+                            {type}={new_avg}
+                        WHERE userId={user_id}
+                        """
+            cursor.execute(update_avg_num_query)
+            connection.commit()
+    except TypeError as e:
+        print(e)
