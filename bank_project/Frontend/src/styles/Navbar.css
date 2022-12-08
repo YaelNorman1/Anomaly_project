@@ -1,14 +1,17 @@
-
-
-#main-links{
-    display: flex;
-    justify-content: space-between;
-    width: 30%;
+#main-links {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
 }
 
-#main-links > a{
-    margin: 10px;
-    padding: 1vw;
-    color: #207648;
-    text-shadow: 1px 0 #b7f1ff;
+#main-links > a {
+  margin: 10px;
+  padding: 1vw;
+  color: white;
+  font-family: sans-serif;
+  font-size: smaller;
+}
+
+.footer {
+  background-color: #06283d;
 }

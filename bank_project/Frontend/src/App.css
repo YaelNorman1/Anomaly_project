@@ -1,59 +1,51 @@
-html, body {
-    margin: 0;
-    height: 100%;
-    background-color: azure;
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background-color: azure;
 }
 
-*{
-    text-decoration: none;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+* {
+  text-decoration: none;
+  font-family: cursive;
 }
 
-a{
-    cursor: pointer;
+a {
+  cursor: pointer;
 }
 
-
-#root{
-    margin: 0;
-    height: 100%;
+#root {
+  margin: 0;
+  height: 100%;
 }
-.App{
-    margin: 0;
-    height: 100%;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 10% 90%;
-    grid-template-areas: 
+.App {
+  margin: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 10% 90%;
+  grid-template-areas:
     "f"
     "b";
 }
 
-.footer{
-    grid-area: f;
-    background-color: rgb(167, 255, 233);
-    -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    -moz-box-shadow: 0 0 15px rgba(0,0,0,0.1);
-     box-shadow: 0 0 15px rgba(0,0,0,0.1);
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     font-size: 2.5vw;
-     padding: 10px;
-     color: #207648;
-     text-shadow: 1px 0 #b7f1ff;
-     font-weight:bold;
-    }
-
-.routs-container{
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: scroll;
+.footer {
+  grid-area: f;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2.5vw;
+  padding: 10px;
 }
 
-
-
+.routs-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}

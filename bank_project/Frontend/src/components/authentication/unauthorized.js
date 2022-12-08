@@ -1,22 +1,24 @@
-import "../../styles/Unauthorized.css"
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
+import "../../styles/Unauthorized.css";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Unauthorized extends Component {
-	constructor() {
-		super()
-		this.state = {}
-	}
+  constructor() {
+    super();
+    this.state = {};
+  }
 
-	render() {
-		return (
-			<div id="unauthorized">
-				<h2>Cant get you there!</h2>
-				<h2>Please sign in first:</h2>
-				<Link to="/login">Login</Link>
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div id="unauthorized">
+        <h1>Cant get you there!</h1>
+        <p>Please sign in first</p>
+        <Link to="/login" className="center" style={{ fontSize: "25px" }}>
+          Login
+        </Link>
+      </div>
+    );
+  }
 }
 
-export default Unauthorized
+export default Unauthorized;

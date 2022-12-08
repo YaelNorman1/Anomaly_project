@@ -1,21 +1,51 @@
-#welcome{
-    background-color: rgb(227, 243, 240);
-    -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    -moz-box-shadow: 0 0 15px rgba(0,0,0,0.1);
-     box-shadow: 0 0 15px rgba(0,0,0,0.1);
-     border-radius: 5px;
-     padding-top: 1vh;
-     padding-bottom: 5vh;
-     padding-left: 4vw;
-     padding-right: 4vw;
-     margin-top: 0;
-     display: flex;
-     flex-direction: column;
-     flex-wrap: wrap;
-     justify-content: space-between;
-     align-items: stretch;
-     row-gap: 0.875rem;
-     top: 8%;
-     left: 10%;
-     position: absolute;
-        }
+#welcome {
+  background-color: white;
+  opacity: 0.92;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  row-gap: 0.875rem;
+  left: 15%;
+  top: 25%;
+  position: absolute;
+  width: 650px;
+  padding: 30px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bank-logo {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  float: left;
+  margin: 0 30px -16px 0;
+  shape-outside: circle(50%);
+}
+
+hr {
+  color: black;
+  width: 100px;
+}
+
+h1 {
+  font-family: "sans-serif";
+  margin-bottom: 20px;
+}
+
+p {
+  text-align: justify;
+}
+
+.login {
+  margin-top: 40px;
+}
