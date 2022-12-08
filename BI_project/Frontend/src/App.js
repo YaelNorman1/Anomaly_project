@@ -2,11 +2,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import Header from './components/header/Header';
 import Filter from './components/filter/Filter';
-import { Container } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import AnomalyResult from './components/anomalyResult/AnomalyResult';
 import axios, * as others from 'axios';
 import {ANOMALIES_URL} from '../src/utils/consts'
+import Amount from './components/amount/Amount';
+import Graph from './components/graph/Graph';
 
 function App() {
   const [filteredAnomalies, setFilteredAnomalies] = useState([])
@@ -37,6 +39,15 @@ function App() {
   return (
     <Container className="App">
       <Header />
+      <Row className='mt-5'>
+        <Amount />
+        <Amount />
+        <Amount />
+      </Row>
+      <Row className='mt-2'>
+        <Graph/>
+        <Graph/>
+      </Row>
       <Filter filter={fetchFilterAnomalies}/>
       <AnomalyResult anomalies={filteredAnomalies}/>
     </Container>
