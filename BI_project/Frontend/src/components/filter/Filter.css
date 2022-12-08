@@ -1,0 +1,12 @@
+.filter-row {
+    margin-top: 50px;
+  
+/*    
+    background-color: rgba(0,0,0,.5);
+    color: #fff; */
+}
+
+.search-btn {
+    width: 100px;
+    height: 55px;
+}

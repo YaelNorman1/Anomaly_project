@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
 import ApiCalls from '../../apiModel/apiCalls';
-import CATEGORIES_ENUM from '../../utils/consts';
+import {CATEGORIES_ENUM} from '../../utils/consts';
 import '../moreAnomalyData/popover.css'
 
 const api= new ApiCalls();
@@ -29,7 +29,7 @@ export default function MoreAnomalyData(props) {
   }
 
   const getRenderCategory = () => {
-      return CATEGORIES[props.category];
+      return CATEGORIES_ENUM[props.category];
 
   }
 
