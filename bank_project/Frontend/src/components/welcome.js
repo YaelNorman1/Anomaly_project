@@ -25,7 +25,7 @@ class Welcome extends Component {
         </p>
         <div className="login">
           {profile.userName ? (
-            <p>Sign in with a different account:</p>
+            <p className="center">Sign in with a different account:</p>
           ) : (
             <p className="center">Please login to your account</p>
           )}

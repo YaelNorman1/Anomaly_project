@@ -100,6 +100,7 @@ const Login = () => {
                 onChange={e => setUser(e.target.value)}
                 value={user}
                 required
+                style={{ paddingLeft: "10px" }}
                 placeholder="Username"
               />
             </div>
@@ -110,6 +111,7 @@ const Login = () => {
                 onChange={e => setPwd(e.target.value)}
                 value={pwd}
                 required
+                style={{ paddingLeft: "10px" }}
                 placeholder="Password"
               />
             </div>
