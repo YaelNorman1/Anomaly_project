@@ -3,7 +3,6 @@ import { Form , Row, Col , Container} from 'react-bootstrap';
 import axios, * as others from 'axios';
 import {CATEGORIES_URL} from '../../utils/consts';
 import '../filter/Filter.css'
-// import { Dayjs } from 'dayjs';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -13,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import { FormControl } from "@mui/material";
 import Button from '@mui/material/Button';
+import {CATEGORIES_ENUM} from '../../utils/consts';
 
 
 
@@ -26,7 +26,6 @@ function Filter(props) {
         toDate: null
       })
     const [categories, setCategories]  = useState([])
-    const [value, setValue] = useState("");
 
 
     useEffect(() => {
@@ -49,7 +48,7 @@ function Filter(props) {
     }
 
     function categoriesOptions(){
-      return categories.map(category=><MenuItem  value={category}>{category}</MenuItem> )
+      return categories.map(category=><MenuItem  value={category}>{CATEGORIES_ENUM[category]}</MenuItem> )
     }
 
     return (
@@ -62,9 +61,6 @@ function Filter(props) {
                 type="number"
                 onChange={handleChange}
                 name= "userId"
-                // InputLabelProps={{
-                //   // shrink: true,
-                // }}
               />
             </Col>
 

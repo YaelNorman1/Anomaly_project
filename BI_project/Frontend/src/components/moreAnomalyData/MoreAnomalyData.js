@@ -8,10 +8,6 @@ import '../moreAnomalyData/popover.css'
 
 const api= new ApiCalls();
 
-const CATEGORIES= {
-  avgNumOfWithdraws: "Number Of Withdraws"
-} 
-
 export default function MoreAnomalyData(props) {
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState(null);
@@ -69,9 +65,7 @@ export default function MoreAnomalyData(props) {
       >
         <Popover id="popover-contained">
           <Popover.Header as="h3">{userStatistic.userName} - {userStatistic.userId}</Popover.Header>
-          {/* <Popover.Body> */}
             {setCategoryDataToRender()}
-          {/* </Popover.Body> */}
         </Popover>
       </Overlay>
     </div>
