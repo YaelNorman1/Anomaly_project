@@ -1,5 +1,6 @@
 from Models.Database import dbController
-
+import random
+import string
 connection = dbController.get_connection()
 TBL_NAME = "users"
 
@@ -27,8 +28,10 @@ def add_user(user_details):
     try:
         with connection.cursor() as cursor:
             UserName, UserPassword = user_details
-            query = f"INSERT INTO {TBL_NAME}(UserName,UserPassword) values (%s,%s)"
-            params = (UserName, UserPassword)
+            UserID = ''.join([random.choice(string.ascii_letters
+            + string.digits) for n in range(10)])
+            query = f"INSERT INTO {TBL_NAME}(UserID,UserName,UserPassword) values (%s,%s,%s)"
+            params = (UserID,UserName, UserPassword)
             cursor.execute(query,params)
             connection.commit()
             return cursor.lastrowid

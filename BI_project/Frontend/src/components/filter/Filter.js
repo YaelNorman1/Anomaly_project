@@ -40,7 +40,7 @@ function Filter(props) {
     return (
         <Row>
             <Col>
-              <Form.Control type="number" placeholder="Enter user id" name="userId" onChange={handleChange}/>
+              <Form.Control type="text" placeholder="Enter user id" name="userId" onChange={handleChange}/>
             </Col>
 
             <Col>
