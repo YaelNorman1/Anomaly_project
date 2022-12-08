@@ -11,7 +11,7 @@ class Unauthorized extends Component {
   render() {
     return (
       <div id="unauthorized">
-        <h1>Cant get you there!</h1>
+        <h1>Can't get you there!</h1>
         <p>Please sign in first</p>
         <Link to="/login" className="center" style={{ fontSize: "25px" }}>
           Login

@@ -19,10 +19,12 @@ class Transactions extends Component {
 
   deleteTransaction = id => {
     const self = this;
+
     axios
       .delete(`${ROUTES_TRANSACTIONS}/${id}`)
       .then(res => {
         self.componentDidMount();
+        this.props.updateBalance();
       })
       .catch(error => {
         console.log(error);

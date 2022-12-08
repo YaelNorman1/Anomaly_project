@@ -30,6 +30,7 @@ class Operations extends Component {
     if (element === "withdraw") {
       amount = amount * -1;
     }
+    this.props.updateBalance();
     this._postTransaction(amount, vendor, category, user);
   };
 

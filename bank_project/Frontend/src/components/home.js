@@ -14,13 +14,27 @@ import SignUp from "./authentication/signUp";
 class Home extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      isBalanceUpdated: false,
+    };
   }
 
+  updateBalance = () => {
+    this.setState({ isBalanceUpdated: !this.state.isBalanceUpdated });
+  };
+
   getTransactionsPage = () =>
-    this.props.auth.user ? <Transactions></Transactions> : <Unauthorized />;
+    this.props.auth.user ? (
+      <Transactions updateBalance={this.updateBalance}></Transactions>
+    ) : (
+      <Unauthorized />
+    );
   getOperationsPage = () =>
-    this.props.auth.user ? <Operations></Operations> : <Unauthorized />;
+    this.props.auth.user ? (
+      <Operations updateBalance={this.updateBalance}></Operations>
+    ) : (
+      <Unauthorized />
+    );
   getBreakdownPage = () =>
     this.props.auth.user ? <Breakdown></Breakdown> : <Unauthorized />;
 
