@@ -20,7 +20,7 @@ def get_user_statistics(user_id):
             get_user_statistics = f"""
                         SELECT *
                         FROM user_statistics
-                        WHERE userId = {user_id} 
+                        WHERE userId = "{user_id}" 
                         """
             cursor.execute(get_user_statistics)
             connection.commit()
@@ -36,7 +36,7 @@ def add_anomaly(user_id, category, quantity, start_date, end_date):
             add_anomaly_query = f"""
                         INSERT INTO anomalies
                         (anomalyId,userId,category,quantity,startDate,endDate) 
-                        VALUES (null,{user_id},'{category}',{quantity},%s,%s)
+                        VALUES (null,"{user_id}",'{category}',{quantity},%s,%s)
                         """
             cursor.execute(add_anomaly_query, (start_date, end_date))
             connection.commit()
@@ -50,7 +50,7 @@ def update_user_statistics(userStatistics: UserStatistics):
             update_user_statistic_query = f"""
                         UPDATE user_statistics
                         SET 
-                            userId={userStatistics.user_id}, 
+                            userId="{userStatistics.user_id}", 
                             userName='{userStatistics.user_name}',
                             avgNumOfWithdraws={userStatistics.avg_num_Of_withdraws},
                             avgNumOfDeposits={userStatistics.avg_num_Of_deposits},
@@ -59,7 +59,7 @@ def update_user_statistics(userStatistics: UserStatistics):
                             numOfWithdraws={userStatistics.num_of_withdraws},
                             numOfDeposits={userStatistics.num_of_deposits},
                             numOfIntervals={userStatistics.num_of_intervals}
-                        WHERE userId={userStatistics.user_id}
+                        WHERE userId="{userStatistics.user_id}"
                         """
             cursor.execute(update_user_statistic_query)
             connection.commit()
@@ -73,7 +73,7 @@ def insert_user_statistics(userStatistics: UserStatistics):
             add_user_statistic_query = f"""
                         INSERT INTO user_statistics
                         VALUES (
-                            {userStatistics.user_id},
+                            '{userStatistics.user_id}',
                             '{userStatistics.user_name}',
                             {userStatistics.avg_num_Of_withdraws},
                             {userStatistics.avg_num_Of_deposits},
@@ -97,7 +97,7 @@ def update_num_of_intervals(user_id):
                         UPDATE user_statistics
                         SET 
                             numOfIntervals=numOfIntervals+1
-                        WHERE userId={user_id}
+                        WHERE userId="{user_id}"
                         """
             cursor.execute(update_num_of_intervals_query)
             connection.commit()
@@ -112,7 +112,7 @@ def update_avg_num(user_id, type, new_avg):
                         UPDATE user_statistics
                         SET 
                             {type}={new_avg}
-                        WHERE userId={user_id}
+                        WHERE userId="{user_id}"
                         """
             cursor.execute(update_avg_num_query)
             connection.commit()

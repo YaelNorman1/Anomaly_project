@@ -3,7 +3,7 @@ from constants import *
 create_anomalies_table = f"""
             CREATE TABLE IF NOT EXISTS {ANOMALY_TABLE_NAME}(
                 anomalyId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                userId INT,
+                userId VARCHAR(255),
                 category VARCHAR(255),
                 quantity INT,
                 startDate DATETIME,
@@ -14,7 +14,7 @@ create_anomalies_table = f"""
 
 create_user_statistics_table = f"""
             CREATE TABLE IF NOT EXISTS {USER_STATISTIC_TABLE_NAME}(
-                userId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                userId VARCHAR(255) PRIMARY KEY,
                 userName VARCHAR(255),
                 avgNumOfWithdraws FLOAT,
                 avgNumOfDeposits FLOAT,

@@ -1,3 +1,5 @@
+import '../header/Header.css'
+
 function Header() {
     return (
       <div className="Header">
