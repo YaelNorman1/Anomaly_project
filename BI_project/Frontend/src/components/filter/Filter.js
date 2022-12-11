@@ -55,6 +55,7 @@ function Filter(props) {
       <Container className="filter-row">
         <Row>
             <Col>
+
               <TextField
                 id="outlined-number"
                 label="User ID"

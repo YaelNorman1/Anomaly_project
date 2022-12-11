@@ -56,7 +56,7 @@ def init_script():
         #          /// DO YOUR TABLE INITIALIZATION HERE ////         #
 
         query = """CREATE TABLE IF NOT EXISTS Users(
-                    UserID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                    UserID VARCHAR(255) PRIMARY KEY,
                     UserName VARCHAR(255),
                     UserPassword VARCHAR(255))
                     """
@@ -68,7 +68,7 @@ def init_script():
                     TransactionAmount INT,
                     TransactionVendor VARCHAR(255),
                     TransactionCategory VARCHAR(255),
-                    TransactionUserID INT,
+                    TransactionUserID VARCHAR(255),
                     TransactionDate DATETIME,
                     PRIMARY KEY (TransactionID),
                     FOREIGN KEY (TransactionUserID) REFERENCES Users(UserID))

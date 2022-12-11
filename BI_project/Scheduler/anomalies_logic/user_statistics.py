@@ -1,7 +1,7 @@
 class UserStatistics:
     def __init__(
         self,
-        user_id: int,
+        user_id: str,
         user_name: str,
         avg_num_Of_withdraws: float,
         avg_num_Of_deposits: float,
