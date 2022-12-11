@@ -59,7 +59,7 @@ function Filter(props) {
               <TextField
                 id="outlined-number"
                 label="User ID"
-                type="number"
+                type="text"
                 onChange={handleChange}
                 name= "userId"
               />
