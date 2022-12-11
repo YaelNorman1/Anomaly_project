@@ -25,6 +25,10 @@ class Operations extends Component {
     let amount = this.state.amount;
     const vendor = this.state.vendor;
     const category = this.state.category;
+    if (!amount || !vendor || !category) {
+      alert("Error: Please fill all the fields.");
+      return;
+    }
     const user = profile.userName;
     let element = e.target.name;
     if (element === "withdraw") {
@@ -42,7 +46,9 @@ class Operations extends Component {
         category: category,
         user: user,
       })
-      .then(res => {})
+      .then(res => {
+        alert("Transaction added successfully");
+      })
       .catch(error => {
         console.log(error);
       });

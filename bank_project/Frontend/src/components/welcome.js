@@ -30,7 +30,7 @@ class Welcome extends Component {
             <p className="center">Please login to your account</p>
           )}
           <Link to="/login" className="center" style={{ fontSize: "25px" }}>
-            Login
+            {profile.userName ? "Logout" : "Login"}
           </Link>
         </div>
       </div>
