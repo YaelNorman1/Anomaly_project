@@ -12,7 +12,7 @@ import Graph from './components/graph/Graph';
 
 function App() {
   const [filteredAnomalies, setFilteredAnomalies] = useState([])
-
+  
   useEffect(() => {
     axios.get(ANOMALIES_URL)
     .then(function (response) {
