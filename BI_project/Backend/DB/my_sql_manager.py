@@ -30,7 +30,7 @@ class MySqlManager(DataBaseManager):
         anomalies = self._execute_query(query)
         return anomalies
 
-    def get_user_statistics(self, user_id: int) -> dict:
+    def get_user_statistics(self, user_id: str) -> dict:
         query = get_user_statistics_query(user_id)
         statistics = self._execute_query(query)
         return statistics
