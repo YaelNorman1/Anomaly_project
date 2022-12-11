@@ -41,7 +41,7 @@ function App() {
   return (
     <Container className="App">
       <Header />
-      <Row className='mt-5'>
+      <Row className='mt-2'>
         <Amount filteredAnomalies={filteredAnomalies} counter="amount"/>
         <Amount filteredAnomalies={filteredAnomalies} counter="num"/>
         <Amount filteredAnomalies={filteredAnomalies} counter="total"/>
