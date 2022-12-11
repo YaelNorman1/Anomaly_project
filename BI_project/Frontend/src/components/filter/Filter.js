@@ -39,12 +39,11 @@ function Filter(props) {
     }, []);
 
     function handleChange(evt) {
-      console.log(evt)
-        const value = evt.target.value;
-        setFilter({
-          ...filter,
-          [evt.target.name]: value
-        });
+      const value = evt.target.value;
+      setFilter({
+        ...filter,
+        [evt.target.name]: value
+      });
     }
 
     function categoriesOptions(){
@@ -71,7 +70,7 @@ function Filter(props) {
                 labelId="choose-category"
                 value={filter.category}
                 label="Category"
-                name= "category"
+                name="category"
                 onChange={handleChange}
               >
                 {categoriesOptions()}

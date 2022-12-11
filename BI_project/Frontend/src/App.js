@@ -25,6 +25,7 @@ function App() {
   
 
   function fetchFilterAnomalies(filter){
+    console.log(filter)
     axios.get(ANOMALIES_URL, {
         params: { userId: filter.userId, category: filter.category, fromDate: filter.fromDate, toDate: filter.toDate},
     })

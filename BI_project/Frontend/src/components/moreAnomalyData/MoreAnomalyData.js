@@ -1,28 +1,17 @@
 import React, { useState, useRef } from 'react';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
-import ApiCalls from '../../apiModel/apiCalls';
 import {CATEGORIES_ENUM} from '../../utils/consts';
-import '../moreAnomalyData/popover.css'
+import '../moreAnomalyData/popover.css';
+import Button from '@mui/material/Button';
 
-const api= new ApiCalls();
 
 export default function MoreAnomalyData(props) {
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState(null);
   const ref = useRef(null);
-  const [userStatistic, setUserStatistic]= useState({});
-  
-  const saveUserStatistic= () => {
-    api.callGetUserStatistic(props.userId)    
-    .then(function (response) {
-      setUserStatistic(response.data);
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-  }
+
 
   const getRenderCategory = () => {
       return CATEGORIES_ENUM[props.category];
@@ -31,30 +20,24 @@ export default function MoreAnomalyData(props) {
 
   const setCategoryDataToRender= () => {
       const category= getRenderCategory();
-      // console.log(category)
       return (
         <Popover.Body>
           <strong>Anomaly: </strong> {category} <br/>
-          <strong>Average Behavior: </strong> {userStatistic[props.category]}<br/>
+          <strong>Average Behavior: </strong> {props.userStatistic[props.category]}<br/>
           <strong>Description: </strong> Please notice to this unusual {category}!<br/>
-          The average of {category} is <strong>{userStatistic[props.category]}</strong> and now we found an anomaly behavior of <strong style={{color: "red"}}>{props.quantity}</strong> {category}.
+          The average of {category} is <strong>{props.userStatistic[props.category]}</strong> and now we found an anomaly behavior of <strong style={{color: "red"}}>{props.quantity}</strong> {category}.
         </Popover.Body>
       );
   }
 
   const handleClick = (event) => {
     setShow(!show);
-    setTarget(event.target);
-    if (!show){
-      saveUserStatistic();
-      console.log(props.userStatistic)
-    }
-    
+    setTarget(event.target);    
   };
 
   return (
     <div ref={ref}>
-      <Button onClick={handleClick}>More Info</Button>
+      <Button type="submit" variant="contained" className='info-btn' onClick={handleClick}>More Info</Button>
 
       <Overlay
         show={show}
@@ -64,7 +47,7 @@ export default function MoreAnomalyData(props) {
         containerPadding={20}
       >
         <Popover id="popover-contained">
-          <Popover.Header as="h3">{userStatistic.userName} - {userStatistic.userId}</Popover.Header>
+          <Popover.Header as="h3">{props.userStatistic.userName} - {props.userStatistic.userId}</Popover.Header>
             {setCategoryDataToRender()}
         </Popover>
       </Overlay>
