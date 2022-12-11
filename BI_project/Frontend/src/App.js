@@ -6,7 +6,7 @@ import { Container, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import AnomalyResult from "./components/anomalyResult/AnomalyResult";
 import axios, * as others from "axios";
-import { ANOMALIES_URL } from "../src/utils/consts";
+import { ANOMALIES_URL, CATEGORIES_ENUM } from "../src/utils/consts";
 import Amount from "./components/amount/Amount";
 import Graph from "./components/graph/Graph";
 import PieChart from "./components/graph/PieChart";
@@ -43,6 +43,20 @@ function App() {
       });
   }
 
+  function parseDataForPie() {
+    const categoriesMap = new Map();
+    for (let anomaly of filteredAnomalies) {
+      let c = anomaly.category;
+      categoriesMap.set(c, categoriesMap.get(c) + 1 || 1);
+    }
+    let categoriesMapAsArr = Array.from(
+      categoriesMap,
+      ([category, counter]) => [CATEGORIES_ENUM[category], counter]
+    );
+
+    return [["Category", "counter"], ...categoriesMapAsArr];
+  }
+
   return (
     <Container className="App">
       <Header />
@@ -52,16 +66,7 @@ function App() {
         <Amount />
       </Row>
       <Row className="mt-2">
-        <PieChart
-          data={[
-            ["Task", "Hours per Day"],
-            ["Work", 11],
-            ["Eat", 2],
-            ["Commute", 2],
-            ["Watch TV", 2],
-            ["Sleep", 7],
-          ]}
-        />
+        <PieChart data={parseDataForPie()} />
         <Graph />
       </Row>
       <Filter filter={fetchFilterAnomalies} />

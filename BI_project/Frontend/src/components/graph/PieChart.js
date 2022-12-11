@@ -3,7 +3,7 @@ import { Chart } from "react-google-charts";
 import { Card, CardContent, Typography } from "@mui/material";
 import { Col } from "react-bootstrap";
 
-export default function App(props) {
+export default function PieChart(props) {
   return (
     <Col>
       <Card sx={{ height: "100%", mt: 3 }}>
