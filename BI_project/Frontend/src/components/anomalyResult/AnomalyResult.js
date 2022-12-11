@@ -1,4 +1,3 @@
-// import { Container } from "react-bootstrap/lib/c";
 import { Container } from "react-bootstrap";
 import User from "../user/User";
 

@@ -60,10 +60,10 @@ function App() {
   return (
     <Container className="App">
       <Header />
-      <Row className="mt-5">
-        <Amount />
-        <Amount />
-        <Amount />
+      <Row className='mt-5'>
+        <Amount filteredAnomalies={filteredAnomalies} counter="amount"/>
+        <Amount filteredAnomalies={filteredAnomalies} counter="num"/>
+        <Amount filteredAnomalies={filteredAnomalies} counter="total"/>
       </Row>
       <Row className="mt-2">
         <PieChart data={parseDataForPie()} />
