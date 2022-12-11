@@ -1,17 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { Form , Row, Col , Button} from 'react-bootstrap';
+import { Form , Row, Col , Container} from 'react-bootstrap';
 import axios, * as others from 'axios';
 import {CATEGORIES_URL} from '../../utils/consts';
+import '../filter/Filter.css'
+import TextField from '@mui/material/TextField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import { FormControl } from "@mui/material";
+import Button from '@mui/material/Button';
+import {CATEGORIES_ENUM} from '../../utils/consts';
+
+
+
 
 
 function Filter(props) {
     const [filter, setFilter] = useState({
         userId: "",
         category: "",
-        fromDate: "",
-        toDate: ""
+        fromDate: null,
+        toDate: null
       })
     const [categories, setCategories]  = useState([])
+
 
     useEffect(() => {
       axios.get(CATEGORIES_URL)
@@ -24,6 +39,7 @@ function Filter(props) {
     }, []);
 
     function handleChange(evt) {
+      console.log(evt)
         const value = evt.target.value;
         setFilter({
           ...filter,
@@ -32,60 +48,73 @@ function Filter(props) {
     }
 
     function categoriesOptions(){
-      return categories.map(category=>{
-         return (<option value={category} key={category}>{category}</option>)
-        })
+      return categories.map(category=><MenuItem  value={category}>{CATEGORIES_ENUM[category]}</MenuItem> )
     }
 
     return (
+      <Container className="filter-row">
         <Row>
             <Col>
-              <Form.Control type="text" placeholder="Enter user id" name="userId" onChange={handleChange}/>
+
+              <TextField
+                id="outlined-number"
+                label="User ID"
+                type="number"
+                onChange={handleChange}
+                name= "userId"
+              />
             </Col>
 
             <Col>
-              <Form.Select aria-label="Floating label select example" name="category" onChange={handleChange} value={filter.category}>
-                <option>Open this select menu</option>
+            <FormControl fullWidth>
+              <InputLabel id="choose-category">Category</InputLabel>
+              <Select
+                labelId="choose-category"
+                value={filter.category}
+                label="Category"
+                name= "category"
+                onChange={handleChange}
+              >
                 {categoriesOptions()}
-              </Form.Select>
+              </Select>
+              </FormControl>
             </Col>
 
             <Col>
-              <Form>
-                <span style={{ opacity: "0.6", fontSize: "13px" }}>from</span>
-                <input
-                  type="date"
-                  name="fromDate"
-                  id="startdate"
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="Start Date"
                   value={filter.fromDate}
-                  onChange={handleChange}
-                  className="form-control datepicker"
-                  style={{ width: "150px" }}
+                  onChange={(newValue) =>{
+                    setFilter({
+                      ...filter,
+                      ["fromDate"]: JSON.stringify(newValue).slice(1,11)})
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
                 />
-              </Form>
+              </LocalizationProvider>
             </Col>
 
             <Col>
-              <Form>
-                <span style={{ opacity: "0.6", fontSize: "13px" }}>to</span>
-                <input
-                  type="date"
-                  name="toDate"
-                  min={filter.fromDate}
-                  id="enddate"
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="End Date"
                   value={filter.toDate}
-                  placeholder="Select Date"
-                  onChange={handleChange}
-                  className="form-control datepicker"
-                  style={{ width: "150px" }}
+                  onChange={(newValue) =>{
+                    setFilter({
+                      ...filter,
+                      ["toDate"]: JSON.stringify(newValue).slice(1,11)})
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
                 />
-              </Form>
+              </LocalizationProvider>
             </Col>
 
             <Col>
-                <Button type="submit" onClick={()=>{props.filter(filter)}}>Button</Button>
+                <Button type="submit" variant="contained" className="search-btn" onClick={()=>{props.filter(filter)}}>Search</Button>
             </Col>
         </Row>
+      </Container>
     );
   }
   

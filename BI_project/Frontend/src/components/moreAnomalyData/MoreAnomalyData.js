@@ -3,14 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
 import ApiCalls from '../../apiModel/apiCalls';
-import CATEGORIES_ENUM from '../../utils/consts';
+import {CATEGORIES_ENUM} from '../../utils/consts';
 import '../moreAnomalyData/popover.css'
 
 const api= new ApiCalls();
-
-const CATEGORIES= {
-  avgNumOfWithdraws: "Number Of Withdraws"
-} 
 
 export default function MoreAnomalyData(props) {
   const [show, setShow] = useState(false);
@@ -29,7 +25,7 @@ export default function MoreAnomalyData(props) {
   }
 
   const getRenderCategory = () => {
-      return CATEGORIES[props.category];
+      return CATEGORIES_ENUM[props.category];
 
   }
 
@@ -69,9 +65,7 @@ export default function MoreAnomalyData(props) {
       >
         <Popover id="popover-contained">
           <Popover.Header as="h3">{userStatistic.userName} - {userStatistic.userId}</Popover.Header>
-          {/* <Popover.Body> */}
             {setCategoryDataToRender()}
-          {/* </Popover.Body> */}
         </Popover>
       </Overlay>
     </div>
