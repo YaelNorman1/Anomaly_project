@@ -30,6 +30,7 @@ function App() {
     })
     .then(function (response) {
         setFilteredAnomalies(response.data)
+        console.log(filteredAnomalies)
     })
     .catch(function (error) {
         console.error(error);
@@ -40,9 +41,9 @@ function App() {
     <Container className="App">
       <Header />
       <Row className='mt-5'>
-        <Amount />
-        <Amount />
-        <Amount />
+        <Amount filteredAnomalies={filteredAnomalies} counter="amount"/>
+        <Amount filteredAnomalies={filteredAnomalies} counter="num"/>
+        <Amount filteredAnomalies={filteredAnomalies} counter="total"/>
       </Row>
       <Row className='mt-2'>
         <Graph/>
