@@ -9,7 +9,10 @@ def is_transaction_amount_anomaly(user_id, quantity, category):
     if not stats:
         return False
     expected_value = stats[0][category]
-    is_it_anomaly = quantity > ((1 + AMOUNT_DEVIATION_PERCENTAGE) * expected_value)
+    if expected_value==0:
+        is_it_anomaly=False
+    else:
+        is_it_anomaly = abs(quantity) > ((1 + AMOUNT_DEVIATION_PERCENTAGE) * abs(expected_value))
     return is_it_anomaly
 
 

@@ -12,8 +12,8 @@ import Graph from "./components/graph/Graph";
 import PieChart from "./components/graph/PieChart";
 
 function App() {
-  const [filteredAnomalies, setFilteredAnomalies] = useState([]);
-
+  const [filteredAnomalies, setFilteredAnomalies] = useState([])
+  
   useEffect(() => {
     axios
       .get(ANOMALIES_URL)
