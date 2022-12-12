@@ -8,8 +8,8 @@ import AnomalyResult from "./components/anomalyResult/AnomalyResult";
 import axios, * as others from "axios";
 import { ANOMALIES_URL, CATEGORIES_ENUM } from "../src/utils/consts";
 import Amount from "./components/amount/Amount";
-import Graph from "./components/graph/Graph";
 import PieChart from "./components/graph/PieChart";
+import GraphComboChart from './components/graphComboChart/GraphComboChart';
 
 function App() {
   const [filteredAnomalies, setFilteredAnomalies] = useState([])
@@ -67,7 +67,7 @@ function App() {
       </Row>
       <Row className="mt-2">
         <PieChart data={parseDataForPie()} />
-        <Graph />
+        <GraphComboChart/>
       </Row>
       <Filter filter={fetchFilterAnomalies} />
       <AnomalyResult anomalies={filteredAnomalies} />
