@@ -1,7 +1,7 @@
 from Routes.category_route import get_all_categories
 from datetime import datetime
 
-def filtered_anomalies(anomalies, userId:int, category,fromDate, toDate) -> list:
+def filtered_anomalies(anomalies, userId:str, category,fromDate, toDate) -> list:
     filtered_anomalies_list = anomalies
     if userId != '' and userId != None:
         filtered_anomalies_list= generic_filtering("userId", userId, anomalies)
@@ -10,10 +10,10 @@ def filtered_anomalies(anomalies, userId:int, category,fromDate, toDate) -> list
         filtered_anomalies_list= generic_filtering("category", category, filtered_anomalies_list)
     
     if fromDate != '' and userId != None:
-        filtered_anomalies_list= fromDate_filtering("fromDate", fromDate, filtered_anomalies_list)
+        filtered_anomalies_list= fromDate_filtering(fromDate, filtered_anomalies_list)
     
     if toDate != '' and userId != None:
-        filtered_anomalies_list= toDate_filtering("toDate", toDate, filtered_anomalies_list)
+        filtered_anomalies_list= toDate_filtering(toDate, filtered_anomalies_list)
 
     return filtered_anomalies_list
 

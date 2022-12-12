@@ -3,7 +3,8 @@ import '../header/Header.css'
 function Header() {
     return (
       <div className="Header">
-        <h1>Anomaly Dashboard</h1>
+        <img src={require("../header/Anomaly-logo1.png")} className="logo"/>
+        {/* <h1>Anomaly Dashboard</h1> */}
       </div>
     );
   }
