@@ -8,7 +8,7 @@ import AnomalyResult from './components/anomalyResult/AnomalyResult';
 import axios, * as others from 'axios';
 import {ANOMALIES_URL} from '../src/utils/consts'
 import Amount from './components/amount/Amount';
-import Graph from './components/graph/Graph';
+import GraphComboChart from './components/graphComboChart/GraphComboChart';
 
 function App() {
   const [filteredAnomalies, setFilteredAnomalies] = useState([])
@@ -45,11 +45,10 @@ function App() {
         <Amount />
       </Row>
       <Row className='mt-2'>
-        <Graph/>
-        <Graph/>
+        <GraphComboChart/>
       </Row>
-      <Filter filter={fetchFilterAnomalies}/>
-      <AnomalyResult anomalies={filteredAnomalies}/>
+      {/* <Filter filter={fetchFilterAnomalies}/> */}
+      {/* <AnomalyResult anomalies={filteredAnomalies}/> */}
     </Container>
   );
 }
